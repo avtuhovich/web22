@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :users
+  resources :people
+
   get 'main/index'
   get 'main/help'
   get 'main/contacts'
