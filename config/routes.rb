@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :users
-  resources :people
+  resources :themes
+  resources :pictures
+  resources :values
 
   get 'main/index'
   get 'main/help'

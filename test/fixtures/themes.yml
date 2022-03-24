@@ -2,12 +2,8 @@
 
 one:
   name: MyString
-  email: MyString
-  password: 1
-  password_confirmation: 1
+  qty_items: 1
 
 two:
   name: MyString
-  email: MyString
-  password: 1
-  password_confirmation: 1
+  qty_items: 1

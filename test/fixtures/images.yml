@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  email: MyString
-  password: 1
-  password_confirmation: 1
+  file: MyString
+  ave_value: 1.5
+  theme_id: 1
 
 two:
   name: MyString
-  email: MyString
-  password: 1
-  password_confirmation: 1
+  file: MyString
+  ave_value: 1.5
+  theme_id: 1

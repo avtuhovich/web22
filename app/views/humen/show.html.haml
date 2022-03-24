@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @human.name
+%p
+  %b Email:
+  = @human.email
+%p
+  %b Password:
+  = @human.password
+%p
+  %b Password confirmation:
+  = @human.password_confirmation
+
+= link_to 'Edit', edit_human_path(@human)
+\|
+= link_to 'Back', humen_path

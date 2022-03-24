@@ -1,0 +1,27 @@
+%h1 Listing humen
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Password
+      %th Password confirmation
+      %th
+      %th
+      %th
+
+  %tbody
+    - @humen.each do |human|
+      %tr
+        %td= human.name
+        %td= human.email
+        %td= human.password
+        %td= human.password_confirmation
+        %td= link_to 'Show', human
+        %td= link_to 'Edit', edit_human_path(human)
+        %td= link_to 'Destroy', human, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Human', new_human_path
