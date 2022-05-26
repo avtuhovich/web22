@@ -1,3 +1,3 @@
 # README
-![](report/labs3.PNG)
+![](report/kurs.PNG)
 Сделана курсовая работа
