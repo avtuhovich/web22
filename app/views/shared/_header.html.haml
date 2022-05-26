@@ -1,0 +1,14 @@
+%div.container.bg-pink-300.max-w-none.flex.items-center.py-6
+  %div.flex-none.w-14.py-auto.text-center.h-full
+    %div.w-14{:class=>"hover:text-amber-700"}= link_to t("site_name"), main_index_path
+  %div.grow.flex.justify-evenly.h-full
+    %div.w-14{:class=>"hover:text-amber-700"}= link_to t("about"), main_about_path
+    - unless current_user.nil?
+      %div.w-28{:class=>"hover:text-amber-700"}=  link_to t("photos"), photo_index_path
+      %div.w-28{:class=>"hover:text-amber-700"}=  link_to t("new_photo"), photo_upload_path
+  %div.flex-none.flex.justify-center.text-center.h-full
+    - if current_user.nil?
+      %div.w-28{:class=>"hover:text-amber-700"}= link_to t("auth"), sessions_index_path
+    - else
+      %div.w-28{:class=>"hover:text-amber-700"}= link_to t("logout"), sessions_destroy_path
+    %div.w-14{:class=>"hover:text-amber-700"}= link_to locale == :ru ? "en" : "ru", request.original_url.split('?').first.to_s + "?locale=" + (locale == :ru ? 'en' : 'ru')

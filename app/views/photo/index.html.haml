@@ -1,0 +1,16 @@
+%div.grid.grid-cols-4.gap-4
+  %aside.flex.flex-col.justify-between{:class=>'h-4/5', 'aria-label': 'Sidebar'}
+    %div{:class=>'overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800'}
+      %ul.space-y-2
+        - @agents.each do |a|
+          %li
+            %button(aria-controls="agent-#{a.id}" data-collapse-toggle="agent-#{a.id}"){:type=>'button', :class=>'flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700'}
+              %span.flex-1.ml-3.text-left.whitespace-nowrap(sidebar-toggle-item)= a.name
+              %svg.w-6.h-6(sidebar-toggle-item){:fill=>"currentColor", :viewBox=>"0 0 20 20", :xmlns=>"http://www.w3.org/2000/svg"}
+                %path(fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd")
+            %ul.py-2.space-y-2{:id => "agent-"+a.id.to_s}
+              - a.bias.each do |b|
+                %li
+                  = link_to b.name, {controller: 'photo', action: 'search', bias: b.id}, {class: 'flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700', 'data-turbo-method':'post', "data-turbo-action":'replace'}
+  %div#view{:class=>'grid grid-cols-3 col-span-3 w-100'}
+    = render "search"

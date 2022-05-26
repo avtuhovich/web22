@@ -1,17 +1,18 @@
 !!!
-%html
+%html.h-screen
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title First
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
+    = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_importmap_tags
     = favicon_link_tag "favicon.ico"
-  %body
+  %body.flex.flex-col.justify-between.h-full.w-screen
     = render 'shared/header'
-    .container
+    .container.mx-auto.py-4
       = yield
     = render 'shared/footer'
 

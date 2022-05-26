@@ -10,49 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_24_134135) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_053512) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "humen", force: :cascade do |t|
+  create_table "agents", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.integer "password"
-    t.integer "password_confirmation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_agents_on_name", unique: true
   end
 
-  create_table "images", force: :cascade do |t|
+  create_table "bia", force: :cascade do |t|
     t.string "name"
-    t.string "file"
-    t.float "ave_value"
-    t.integer "theme_id"
+    t.integer "agent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_bia_on_name", unique: true
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "password"
-    t.integer "password_confirmation"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pictures", force: :cascade do |t|
-    t.string "name"
-    t.string "file"
-    t.float "ave_value"
-    t.integer "theme_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "themes", force: :cascade do |t|
-    t.string "name"
-    t.integer "qty_items"
+  create_table "photos", force: :cascade do |t|
+    t.string "path"
+    t.integer "user_id"
+    t.integer "bia_id"
+    t.integer "likes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,16 +41,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_24_134135) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "password_digest"
+    t.string "remember_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "values", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "image_id"
-    t.integer "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
 end

@@ -1,0 +1,42 @@
+%div.mb-6
+  %form#agency{:method=>'post', :action=> photo_agency_path}
+    %div#agency_alert{:class=>"bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"}
+    %div.mb-6
+      %label{:for=>'agency_name', :class=>'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}= t "agency_name"
+      %input#agency_name(required){:name=>'agency_name', :class=>'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
+    %button{:type=>'submit', :class=>'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}= t "add_agancy"
+%div.mb-6
+  %form#bias{:method=>'post', :action=> photo_bias_path}
+    %div#bias_alert
+    %div.mb-6
+      %label{:for=>'bias_name', :class=>'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}= t "bias_name"
+      %input#bias_name(required){:name=>'bias_name', :class=>'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
+    %div.mb-6
+      %label{:for=>'agency_id', :class=>'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}= t "agency_name"
+      %select#agency_id(required){:name=>'agency_id', :class=>'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
+        - @agents.each do |a|
+          %option{:value=>a.id}= a.name
+    %button{:type=>'submit', :class=>'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}= t "add_agancy"
+%div
+  %form#photo{:method=>'post', :action=>photo_upload_path, :enctype=>'multipart/form-data'}
+    %div#photo_alert
+    %div.mb-6
+      %label{:for=>'bias_id', :class=>'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}= t "agency_name"
+      %select#bias_id(required){:name=>'bias_id', :class=>'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}
+        - @agents.each do |a|
+          %optgroup{:label=>a.name}
+          - a.bias.each do |b|
+            %option{:value=>b.id}= b.name
+    %div.mb-6
+      %label{:for=>'photo_fl', :class=>'block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300'}= t "upload_photo"
+      %input#photo_fl(required){:type=>'file',:name=>'photo', :class=>'block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'}
+    %button{:type=>'submit', :class=>'text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'}= t "add_photo"
+:javascript
+  document.onload = () => {
+    document.querySelector('#agency button').click = () => {
+      document.getElementById('agency').reset();
+    };
+    document.querySelector('#bias button').click = () => {
+      document.getElementById('bias').reset();
+    };
+  };
